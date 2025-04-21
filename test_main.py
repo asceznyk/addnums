@@ -30,6 +30,9 @@ def test_greater_than_1000():
 def test_multichar_delimiter():
   assert add("//[***]\n10***12***31***46***53") == 152
 
+def test_multichar_multi_delimiter():
+  assert add("//[***][%][&&]\n10***12&&31%46***53") == 152
+
 
 
 

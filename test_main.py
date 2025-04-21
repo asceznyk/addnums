@@ -12,3 +12,6 @@ def test_add_multiple():
 def test_add_newline():
   assert add("1\n2,3\n4") == 10
 
+def test_change_delimiter():
+  assert add("//*\n1*2*34") == 37
+

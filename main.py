@@ -17,12 +17,6 @@ def handle_delimiter(numbers:str) -> Tuple[List[str],int]:
   return delimiters, i 
 
 def add(numbers:str) -> int:
-  '''
-  the function returns the sum of the numbers in input
-  numbers: is a string of POSITIVE numbers in the following format
-  "//[delimiter]\n[numbers..]" seperated by the
-  specified delimiter and newline
-  '''
   if numbers == '':
     return 0
   if len(numbers) == 1:

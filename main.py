@@ -1,3 +1,20 @@
+from typing import List, Tuple
+
+def handle_delimiter(numbers:str) -> Tuple[List[str],int]:
+  i = 2
+  delimiters = []
+  if numbers[i] != '[':
+    return [numbers[i]], i
+  while numbers[i] != '\n':
+    if numbers[i] == '[':
+      d = ''
+      i += 1
+      while numbers[i] != ']':
+        d += numbers[i]
+        i += 1
+      delimiters.append(d)
+      i += 1
+  return delimiters, i 
 
 def add(numbers:str) -> int:
   '''
@@ -11,11 +28,12 @@ def add(numbers:str) -> int:
   if len(numbers) == 1:
     return int(numbers[0])
   ans = 0
-  delimiter = ','
+  delimiters = [',']
   if numbers[:2] == '//':
-    delimiter = numbers[2]
-    numbers = numbers[3:]
-  numbers = numbers.replace(delimiter, "\n")
+    delimiters, i = handle_delimiter(numbers)
+    numbers = numbers[(i+1):]
+  for d in delimiters:
+    numbers = numbers.replace(d, "\n")
   pnums = numbers.split('\n')
   negs = []
   for x in pnums: 

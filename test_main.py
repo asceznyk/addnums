@@ -27,3 +27,9 @@ def test_show_negative():
 def test_greater_than_1000():
   assert add("//;10;1001;2") == 12
 
+def test_multichar_delimiter():
+  assert add("//[***]\n10***12***31***46***53") == 152
+
+
+
+

@@ -24,3 +24,6 @@ def test_show_negative():
     add("//;-1;8;-10;-20")
   assert str(ex.value) == "negative numbers not allowed -1,-10,-20"
 
+def test_greater_than_1000():
+  assert add("//;10;1001;2") == 12
+

@@ -27,11 +27,9 @@ def add(numbers:str) -> int:
     raise Exception(f"negative numbers not allowed {','.join([str(x) for x in negs])}")
   for x in pnums:
     if x == '': continue
-    if delimiter not in x:
-      ans += int(x)
-      continue
-    for y in x.split(delimiter):
-      ans += int(y)
+    x = int(x)
+    if x > 1000: continue
+    ans += x
   return ans
     
 

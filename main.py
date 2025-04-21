@@ -6,24 +6,32 @@ def add(numbers:str) -> int:
   "//[delimiter]\n[numbers..]" seperated by the
   specified delimiter and newline
   '''
-  try:
-    if numbers == '': return 0
-    ans = 0
-    pnums = numbers.split('\n')
-    start = pnums[0]
-    delimiter = ','
-    if start[0] == '/':
-      delimiter = pnums[0][2]
-      pnums = pnums[1:]
-    for x in pnums:
-      if x == '': continue
-      if delimiter in x:
-        ans += sum([int(y) for y in x.split(delimiter)])
-        continue
+  if numbers == '':
+    return 0
+  if len(numbers) == 1:
+    return int(numbers[0])
+  ans = 0
+  delimiter = ','
+  if numbers[:2] == '//':
+    delimiter = numbers[2]
+    numbers = numbers[3:]
+  numbers = numbers.replace(delimiter, "\n")
+  pnums = numbers.split('\n')
+  negs = []
+  for x in pnums: 
+    if x == '': continue
+    x = int(x)
+    if x < 0:
+      negs.append(x)
+  if len(negs) > 0:
+    raise Exception(f"negative numbers not allowed {','.join([str(x) for x in negs])}")
+  for x in pnums:
+    if x == '': continue
+    if delimiter not in x:
       ans += int(x)
-    return ans
-  except:
-    pass
-    return -1
+      continue
+    for y in x.split(delimiter):
+      ans += int(y)
+  return ans
     
 

@@ -1,3 +1,4 @@
+import pytest
 from main import add
 
 def test_add_empty():
@@ -14,4 +15,12 @@ def test_add_newline():
 
 def test_change_delimiter():
   assert add("//*\n1*2*34") == 37
+
+def test_show_negative():
+  with pytest.raises(Exception) as ex:
+    add("-1")
+  assert str(ex.value) == "negative numbers not allowed -1"
+  with pytest.raises(Exception) as ex:
+    add("//;-1;8;-10;-20")
+  assert str(ex.value) == "negative numbers not allowed -1,-10,-20"
 
